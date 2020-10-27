@@ -954,8 +954,8 @@ def densenet169(pretrained=False, progress=True, **kwargs):
         memory_efficient (bool) - If True, uses checkpointing. Much more memory efficient,
           but slower. Default: *False*. See `"paper" <https://arxiv.org/pdf/1707.06990.pdf>`_
     """
-     ## THIS IS WHERE WE EDIT THE NETWORk
-    return _densenet('densenet169', 32, (6, 12, 32, 32), 64, pretrained, progress,
+     ## THIS IS WHERE WE EDIT THE NETWORK
+    return _densenet('densenet169', 32, (6, 12, 16, 16), 64, pretrained, progress,
                      **kwargs)
 
 
@@ -1000,7 +1000,8 @@ vote_score = np.zeros(valset.__len__())
 optimizer = optim.Adam(model.parameters(), lr=0.0001)
 scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10)
 
-total_epoch = 10
+# TOTAL EPOCH VALUE IMPORTANT IN TRAINING
+total_epoch = 1
 for epoch in range(1, total_epoch+1):
     train(optimizer, epoch)
     
